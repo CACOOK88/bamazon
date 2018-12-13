@@ -52,9 +52,10 @@ const customerOrder = () => {
         }
         // console.log(chosenItem)
 
-        if ( chosenItem.stock_quantity > answer.quantity ) {
+        if ( chosenItem.stock_quantity >= answer.quantity ) {
           // update database with purchase and show customer total cost of purchase
           let newStockQuantity = chosenItem.stock_quantity - answer.quantity
+          let totalPrice = (answer.quantity * chosenItem.price).toFixed(2)
           connection.query(
             "UPDATE products SET ? WHERE ?",
             [
@@ -63,15 +64,14 @@ const customerOrder = () => {
             ],
             function(err, res ) {
               if ( err ) throw err
-              console.log(`\nYou successfully purchased ${ answer.quantity } ${ chosenItem.product_name } for a total of $${ (answer.quantity * chosenItem.price).toFixed(2) }\n`)
+              console.log(`\nYou successfully purchased ${ answer.quantity } ${ chosenItem.product_name } for a total of $${ totalPrice }\n`)
             }
           )
-          connection.end()
-
         } else {
           console.log(`Insufficient stock quantity!`)
-          connection.end()
+          
         }
+        connection.end()
       })
   })
 
