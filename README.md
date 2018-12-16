@@ -17,6 +17,6 @@ bamazonManager.js IS A CLI FOR A STORE MANAGER TO VIEW ALL INVENTORY,
 VIEW LOW INVENTORY, ADD INVENTORY, AND ADD NEW PRODUCTS TO THE STORE.
 
 EXAMPLE IMAGES
-(images/bamazonCustomer.png)
-(images/bamazonManager1.png)
-(images/bamazonManager2.png)
+[Bamazon Customer](images/bamazonCustomer.png)
+[Bamazon Manager 1](images/bamazonManager1.png)
+[Bamazon Manager 2](images/bamazonManager2.png)
