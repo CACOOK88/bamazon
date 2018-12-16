@@ -69,6 +69,7 @@ const customerOrder = () => {
             ],
             function(err, res ) {
               if ( err ) throw err
+              // ORDER SUCCESS THEN PROMPT TO MAKE ANOTHER PURCHASE OR NOT
               console.log(`\nYou successfully purchased ${ answer.quantity } ${ chosenItem.product_name } for a total of $${ totalPrice }\n`)
               inquirer
                 .prompt(
@@ -90,7 +91,9 @@ const customerOrder = () => {
             }
           )
         } else {
+          // TELL USER THERE'S NOT ENOUGH IN STOCK FOR THAT PURCHASE
           console.log(`Insufficient stock quantity!`)
+          // PROMPT USER TO TRY ANOTHER ITEM OR NOT
           inquirer
             .prompt(
               {
