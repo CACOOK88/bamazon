@@ -70,14 +70,48 @@ const customerOrder = () => {
             function(err, res ) {
               if ( err ) throw err
               console.log(`\nYou successfully purchased ${ answer.quantity } ${ chosenItem.product_name } for a total of $${ totalPrice }\n`)
+              inquirer
+                .prompt(
+                  {
+                    name: 'restart',
+                    type: 'list',
+                    message: 'Would you like to make another purchase?',
+                    choices: ['Yes', 'No']
+                  }
+                )
+                .then(function(res){
+                  if (res.restart == 'Yes') {
+                    customerOrder()
+                  } else {
+                    console.log(`Thank you for your order. Have a nice day!`)
+                    connection.end()
+                  }
+                })
             }
           )
         } else {
           console.log(`Insufficient stock quantity!`)
-          
+          inquirer
+            .prompt(
+              {
+                name: 'restart',
+                type: 'list',
+                message: 'Would you like to buy something else?',
+                choices: ['Yes', 'No']
+              }
+            )
+            .then(function(res){
+              if (res.restart == 'Yes') {
+                customerOrder()
+              } else {
+                console.log(`\nThank you. Have a nice day!\n`)
+                connection.end()
+              }
+            })
         }
-        connection.end()
+        
       })
+
   })
 
 }
